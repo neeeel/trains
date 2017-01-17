@@ -1,0 +1,45 @@
+
+<html>
+<head>
+<style>
+    thead {color:green;}
+    tbody {color:blue;}
+    tfoot {color:red;}
+table, th, td {
+    border: 1px solid black;
+    background-color: #f1f1c1;
+}
+}
+</style>
+</head>
+<body>
+
+{% if full_journey %}
+    <table >
+        <thead>
+        <tr>
+            <th>Train Id</th>
+            <th>Dep Time</th>
+        </tr></thead>
+    <ul>
+    {% for stop in full_journey %}
+        <tr>
+            <td align="center">{{ stop.station }}</td>
+            <td align="center">{{ stop.depTime|date:"H:i" }}</td>
+
+        </tr>
+    {% endfor %}
+    </ul>
+        </table>
+<form action="/trains/your-name/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <label for="your_name">Your name: </label>
+    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+    <input type="submit" value="OK">
+</form>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+
+</body></html>

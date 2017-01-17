@@ -1,0 +1,9 @@
+{% if latest_journey_list %}
+    <ul>
+    {% for journey in latest_journey_list %}
+        <li><a href="/trains/{{ journey.id }}/">{{ journey.scotrailID }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
